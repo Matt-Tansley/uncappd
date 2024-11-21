@@ -1,13 +1,15 @@
 import { fail } from '@sveltejs/kit';
-// import { createNewBeer } from '$lib/server/database.ts'
+import { createNewBeer } from '$lib/server/db/beers'
 
 export const actions = {
   addNewBeer: async ({ request }: { request: Request }) => {
     const formData = Object.fromEntries(await request.formData())
 
-    const name = formData.name
-    const brewery = formData.brewery
-    const abv = formData.abv
+    const { name, brewery, abv } = formData as {
+      name: string,
+      brewery: string,
+      abv: string
+    }
 
     // Dummy error
     if (name === "wine") {
@@ -19,20 +21,18 @@ export const actions = {
     const beer = {
       name,
       brewery,
-      abv
+      abv: Number(abv)
     }
 
-    // try {
-    //   await createNewBeer(beer)
+    try {
+      await createNewBeer(beer)
 
-    //   return {
-    //     success: true,
-    //     beer: beer
-    //   }
-    // } catch (error) {
+      return {
+        success: true,
+        beer: beer
+      }
+    } catch (error) {
 
-    // }
-
-    console.log(formData)
+    }
   }
 }

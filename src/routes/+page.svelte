@@ -32,7 +32,7 @@
 
 		<div>
 			<label for="abv">ABV</label>
-			<input type="number" name="abv" id="abv" />
+			<input type="number" name="abv" id="abv" step="any" />
 		</div>
 
 		<div>
