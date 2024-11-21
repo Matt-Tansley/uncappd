@@ -1,0 +1,5 @@
+// Variable overrides first
+$semantic-root-element: "div#pico-root";
+
+// Then import the main Pico stylesheet
+@import "../../node_modules/@picocss/pico/scss/index";
